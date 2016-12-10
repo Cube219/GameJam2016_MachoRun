@@ -18,7 +18,7 @@ public class ChulGoo : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if (coll.gameObject.tag == "floor") {
-			
+			this.GetComponent<Rigidbody2D> ().AddForce (Vector2.up*350);
 			//Destroy (this);
 		}
 	}

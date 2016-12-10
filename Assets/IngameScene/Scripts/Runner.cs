@@ -26,10 +26,10 @@ public class Runner : MonoBehaviour {
 
 	void Update()
 	{
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		//Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
-=======
->>>>>>> master
+//=======
+//>>>>>>> master
 	}
 		
 	void FixedUpdate()
@@ -60,17 +60,20 @@ public class Runner : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		//Debug.Log(coll.relativeVelocity);
 
-=======
->>>>>>> master
-		if(coll.gameObject.tag == "floor") {
+//=======
+//>>>>>>> master
+		if (coll.gameObject.tag == "floor") {
 			// 점프들 초기화
 			jumping = false;
 			dJump = false;
-		} else if(coll.gameObject.tag == "obstacle") {
-			runnderBumped();
+		} else if (coll.gameObject.tag == "obstacle") {
+			runnderBumped ();
+		} else if (coll.gameObject.tag == "banana") {
+			banana = true;
+			Destroy (coll.gameObject);
 		}
 	}
 
@@ -80,7 +83,7 @@ public class Runner : MonoBehaviour {
 		this.transform.Translate(new Vector2 (right, 0) * currentSpeed * Time.deltaTime);
 		if (banana == true) {
 			if (currentSpeed > 0)
-				currentSpeed -= accelSpeed * 2.0f;
+				currentSpeed -= accelSpeed * 1.2f;
 			else
 				banana = false;
 		} else {

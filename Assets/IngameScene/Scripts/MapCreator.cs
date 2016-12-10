@@ -11,8 +11,7 @@ public class MapCreator : MonoBehaviour {
 	public GameObject Gashi;
 	public GameObject chulGoo;
 	public GameObject Banana;
-
-	public GameObject slow;
+	public GameObject fast;
 
 	private List<List<int[,]>> maps = new List<List<int[,]>>();
 	private GameObject map;
@@ -57,7 +56,7 @@ public class MapCreator : MonoBehaviour {
 		}
 
 		map = new GameObject();
-		map.name = "Map";
+		map.name = "test1";
 		map.transform.position = Vector2.zero;
 
 
@@ -85,8 +84,8 @@ public class MapCreator : MonoBehaviour {
 						case 3: // 가시
 							o = (GameObject)Instantiate(Gashi);
 							break;
-						case 5: // 감속
-							o = (GameObject)Instantiate(slow);
+						case 4: // rk속
+							o = (GameObject)Instantiate(fast);
 							break;
 						}
 						if(o != null) {

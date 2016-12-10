@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class Runner : NetworkBehaviour {
 
 	public TextMesh nameMesh;
-	public Camera c;
+	public SpriteRenderer macho;
 
 	[SyncVar]
 	public string playerName;
@@ -44,6 +44,8 @@ public class Runner : NetworkBehaviour {
 	public int right = 1;
 
 	public BoxCollider2D approachCollider;
+
+	private float preX = 0;
 
 	void Awake()
 	{
@@ -89,11 +91,9 @@ public class Runner : NetworkBehaviour {
 				fast = false;
 			}
 			if(Input.GetKey(KeyCode.LeftArrow)) {
-				this.transform.FindChild("GameObject").transform.localScale = new Vector2(-2, 2);
 				right = -1;
 			}
 			if(Input.GetKey(KeyCode.RightArrow)) {
-				this.transform.FindChild("GameObject").transform.localScale = new Vector2(2, 2);
 				right = 1;
 			}
 			if(canRun == true && isBumped == false) {
@@ -130,6 +130,14 @@ public class Runner : NetworkBehaviour {
 				slow = true;
 			}
 		}
+
+		if(preX - transform.position.x < -0.05f) {
+			macho.flipX = false;
+		} else if(preX - transform.position.x > 0.05f){
+			macho.flipX = true;
+		}
+
+		preX = transform.position.x;
 	}
 
 	[ClientCallback]

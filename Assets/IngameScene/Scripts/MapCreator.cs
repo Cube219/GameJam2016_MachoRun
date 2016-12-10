@@ -10,6 +10,7 @@ public class MapCreator : MonoBehaviour {
 	public GameObject tile;
 
 	private List<List<int[,]>> maps = new List<List<int[,]>>();
+	private GameObject map;
 
 	void Awake()
 	{
@@ -45,6 +46,16 @@ public class MapCreator : MonoBehaviour {
 
 	public void CreateMap()
 	{
+		if(map != null) {
+			Destroy(map);
+			map = null;
+		}
+
+		map = new GameObject();
+		map.name = "Map";
+		map.transform.position = Vector2.zero;
+
+
 		int screenIndex = 0;
 		int rowNum = maps.Count;
 		for(int row=0; row<rowNum; row++) {
@@ -62,7 +73,10 @@ public class MapCreator : MonoBehaviour {
 								break;
 						}
 						if(o != null) {
-							o.transform.position = new Vector2(0.4f * j + 0.4f * 16 * screenIndex, 0.4f * i + 0.4f * 9 * row);
+							o.transform.localScale = new Vector2(2f, 2f);
+
+							o.transform.position = new Vector2(0.8f * j + 0.8f * 16 * screenIndex, 0.8f * i + 0.8f * 9 * row);
+							o.transform.SetParent(map.transform);
 						}
 					}
 				}

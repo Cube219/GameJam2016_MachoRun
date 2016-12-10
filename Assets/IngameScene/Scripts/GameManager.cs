@@ -2,9 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Networking;
+using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
+	public static List<Runner> runners = new List<Runner>();
 	public static GameManager m;
 
 	public Image[] countImg;
@@ -17,8 +20,18 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 		ReadyGame();
+
 		MapCreator.m.LoadMapData("test1");
 		MapCreator.m.CreateMap();
+
+		foreach(Runner r in runners) {
+			r.Init();
+		}
+	}
+
+	[ServerCallback]
+	void Update()
+	{
 	}
 
 	private void Init()
@@ -57,7 +70,9 @@ public class GameManager : MonoBehaviour {
 
 	private void StartGame()
 	{
-		GameObject.Find("player").GetComponent<Runner>().canRun = true;
+		foreach(Runner r in runners) {
+			r.canRun = true;
+		}
 	}
 
 }

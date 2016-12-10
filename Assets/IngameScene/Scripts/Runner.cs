@@ -1,34 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Runner : MonoBehaviour {
+public class Runner : NetworkBehaviour {
 
+	public TextMesh nameMesh;
+
+	[SyncVar]
+	public string playerName;
+	[SyncVar]
+	public Color playerColor;
+
+	[SyncVar]
 	protected float maxSpeed = 4.0f;
+	[SyncVar]
 	protected float currentSpeed = 3.0f;
+	[SyncVar]
 	protected float jumpHeight= 350f;
+	[SyncVar]
 	protected float dJumpHeight= 350f;
+	[SyncVar]
 	protected bool jumping = false;
+	[SyncVar]
 	protected bool dJump = false;
+	[SyncVar]
 	protected float accelSpeed= 0.05f;
+	[SyncVar]
 	protected int upgrade = 0;
+	[SyncVar]
 	protected int right = 1;
 
+	[SyncVar]
 	public bool canRun = false;
+	[SyncVar]
 	public bool isBumped = false;
 
 
-	void Start ()
+	void Awake ()
 	{
-		
+		GameManager.runners.Add(this);
 	}
 
-	void Update()
+	void Start()
 	{
+		nameMesh.text = playerName;
+		nameMesh.color = playerColor;
+	}
+
+	void OnDestroy()
+	{
+		GameManager.runners.Remove(this);
 	}
 		
+	[ClientCallback]
 	void FixedUpdate()
 	{
+		if(!isLocalPlayer)
+			return;
+
 		if(canRun == true && isBumped == false) {
 			runnerRun();
 
@@ -47,7 +77,7 @@ public class Runner : MonoBehaviour {
 			}
 		}
 	}
-
+	[ClientCallback]
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		if(coll.gameObject.tag == "floor") {
@@ -57,6 +87,10 @@ public class Runner : MonoBehaviour {
 		} else if(coll.gameObject.tag == "obstacle") {
 			runnderBumped();
 		}
+	}
+
+	public void Init()
+	{
 	}
 
 	protected void runnerRun()

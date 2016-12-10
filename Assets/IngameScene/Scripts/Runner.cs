@@ -16,6 +16,7 @@ public class Runner : MonoBehaviour {
 
 	public bool canRun = false;
 	public bool isBumped = false;
+	public bool banana = false;
 
 
 	void Start ()
@@ -25,11 +26,16 @@ public class Runner : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
+		//Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
 	}
 		
 	void FixedUpdate()
 	{
+		if (Input.GetKey (KeyCode.LeftArrow))
+			right = -1;
+		if (Input.GetKey (KeyCode.RightArrow))
+			right = 1;
+		
 		if(canRun == true && isBumped == false) {
 				runnerRun();
 
@@ -44,7 +50,7 @@ public class Runner : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		Debug.Log(coll.relativeVelocity);
+		//Debug.Log(coll.relativeVelocity);
 
 		if(coll.gameObject.tag == "floor") {
 			// 점프들 초기화
@@ -59,12 +65,17 @@ public class Runner : MonoBehaviour {
 	{
 		
 		this.transform.Translate(new Vector2 (right, 0) * currentSpeed * Time.deltaTime);
-
-		if (currentSpeed < maxSpeed) {
-			currentSpeed += accelSpeed;
-		} else
-			currentSpeed -= accelSpeed*1.5f;
-
+		if (banana == true) {
+			if (currentSpeed > 0)
+				currentSpeed -= accelSpeed * 2.0f;
+			else
+				banana = false;
+		} else {
+			if (currentSpeed < maxSpeed) {
+				currentSpeed += accelSpeed;
+			} else
+				currentSpeed -= accelSpeed * 1.5f;
+		}
 	}
 
 	protected void runnerJump()

@@ -21,7 +21,7 @@ public class GameManager : NetworkBehaviour {
 	void Start () {
 		ReadyGame();
 
-		MapCreator.m.LoadMapData("test1");
+		MapCreator.m.LoadMapData("test2");
 		MapCreator.m.CreateMap();
 
 		foreach(Runner r in runners) {
@@ -34,7 +34,7 @@ public class GameManager : NetworkBehaviour {
 	{
 	}
 
-	private void Init()
+	public void Init()
 	{
 	}
 

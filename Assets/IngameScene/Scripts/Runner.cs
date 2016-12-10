@@ -1,39 +1,68 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Runner : MonoBehaviour {
+public class Runner : NetworkBehaviour {
 
+	public TextMesh nameMesh;
+
+	[SyncVar]
+	public string playerName;
+	[SyncVar]
+	public Color playerColor;
+
+	[SyncVar]
 	protected float maxSpeed = 4.0f;
+	[SyncVar]
 	protected float currentSpeed = 3.0f;
+	[SyncVar]
 	protected float jumpHeight= 400f;
+	[SyncVar]
 	protected float dJumpHeight= 400f;
+	[SyncVar]
 	protected bool jumping = false;
+	[SyncVar]
 	protected bool dJump = false;
+	[SyncVar]
 	protected float accelSpeed= 0.05f;
+	[SyncVar]
 	protected int upgrade = 0;
+	[SyncVar]
 	protected int right = 1;
 
+	[SyncVar]
 	public bool canRun = false;
+	[SyncVar]
 	public bool isBumped = false;
+	[SyncVar]
 	public bool banana = false;
+	[SyncVar]
 	public bool slow = false;
+	[SyncVar]
 	public bool fast = false;
 
 
-	void Start ()
+	void Awake()
 	{
-		
+		GameManager.runners.Add(this);
 	}
 
+	void Start ()
+	{
+		nameMesh.text = playerName;
+		nameMesh.color = playerColor;
+	}
+
+	[ClientCallback]
 	void Update()
 	{
-//<<<<<<< HEAD
-		//Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
-//=======
-//>>>>>>> master
 	}
+
+	[SyncVar]
 	float timer = 0f;
+
+	[ClientCallback]
 	void FixedUpdate()
 	{
 		if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -70,13 +99,9 @@ public class Runner : MonoBehaviour {
 		}
 	}
 
+	[ClientCallback]
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-//<<<<<<< HEAD
-		//Debug.Log(coll.relativeVelocity); 
-
-//=======
-//>>>>>>> master
 		if (coll.gameObject.tag == "floor") {
 			// 점프들 초기화
 			jumping = false;
@@ -91,6 +116,10 @@ public class Runner : MonoBehaviour {
 			slow = true;
 			timer = 0f;
 		}
+	}
+
+	public void Init()
+	{
 	}
 
 	protected void runnerRun()

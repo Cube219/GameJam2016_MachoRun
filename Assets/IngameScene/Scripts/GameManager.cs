@@ -12,6 +12,7 @@ public class GameManager : NetworkBehaviour {
 
 	public Image startImg;
 	public Sprite[] countImg;
+	//public bool noWinner = true;
 
 	private bool isEnd = false;
 

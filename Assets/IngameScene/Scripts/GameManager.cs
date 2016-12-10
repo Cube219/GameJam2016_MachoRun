@@ -82,11 +82,17 @@ public class GameManager : NetworkBehaviour {
 		yield return new WaitForSeconds(4f);
 		Prototype.NetworkLobby.LobbyManager.s_Singleton.ServerReturnToLobby();
 	}
-	
+
+	public Text winText;
+	public GameObject eff;
+
 	[ClientRpc]
 	public void RpcVictory(string playerName, Color playerColor)
 	{
 		Debug.Log(playerName + "Win!!");
+		winText.text = playerName + " Win !!!";
+		eff.SetActive (true);
+
 	}
 
 }

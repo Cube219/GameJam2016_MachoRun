@@ -8,6 +8,11 @@ public class MapCreator : MonoBehaviour {
 	public static MapCreator m;
 
 	public GameObject tile;
+	public GameObject Gashi;
+	public GameObject chulGoo;
+	public GameObject Banana;
+
+	public GameObject slow;
 
 	private List<List<int[,]>> maps = new List<List<int[,]>>();
 	private GameObject map;
@@ -71,6 +76,18 @@ public class MapCreator : MonoBehaviour {
 							case 0: // 타일
 								o = (GameObject)Instantiate(tile);
 								break;
+						case 1: // 바나나
+							o = (GameObject)Instantiate(Banana);
+							break;
+						case 2: // 철구
+							o = (GameObject)Instantiate(chulGoo);
+							break;
+						case 3: // 가시
+							o = (GameObject)Instantiate(Gashi);
+							break;
+						case 5: // 감속
+							o = (GameObject)Instantiate(slow);
+							break;
 						}
 						if(o != null) {
 							o.transform.localScale = new Vector2(2f, 2f);

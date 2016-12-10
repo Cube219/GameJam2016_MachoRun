@@ -6,8 +6,8 @@ public class Runner : MonoBehaviour {
 
 	protected float maxSpeed = 4.0f;
 	protected float currentSpeed = 3.0f;
-	protected float jumpHeight= 350f;
-	protected float dJumpHeight= 350f;
+	protected float jumpHeight= 400f;
+	protected float dJumpHeight= 400f;
 	protected bool jumping = false;
 	protected bool dJump = false;
 	protected float accelSpeed= 0.05f;
@@ -17,6 +17,8 @@ public class Runner : MonoBehaviour {
 	public bool canRun = false;
 	public bool isBumped = false;
 	public bool banana = false;
+	public bool slow = false;
+	public bool fast = false;
 
 
 	void Start ()
@@ -31,14 +33,17 @@ public class Runner : MonoBehaviour {
 //=======
 //>>>>>>> master
 	}
-		
+	float timer = 0f;
 	void FixedUpdate()
 	{
-		if (Input.GetKey (KeyCode.LeftArrow))
-			right = -1;
-		if (Input.GetKey (KeyCode.RightArrow))
+		if (Input.GetKey (KeyCode.LeftArrow)) {
 			right = 1;
-		
+			this.transform.localScale = new Vector2 (-2, 2);
+		}
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			right = 1;
+			this.transform.localScale = new Vector2 (2, 2);
+		}
 		if(canRun == true && isBumped == false) {
 			runnerRun();
 
@@ -56,12 +61,19 @@ public class Runner : MonoBehaviour {
 				right = 1;
 			}
 		}
+		if (slow == true) {
+			timer += Time.deltaTime;
+			if (timer <= 3f)
+				maxSpeed = 2f;
+			else
+				slow = false;
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 //<<<<<<< HEAD
-		//Debug.Log(coll.relativeVelocity);
+		//Debug.Log(coll.relativeVelocity); 
 
 //=======
 //>>>>>>> master
@@ -75,6 +87,10 @@ public class Runner : MonoBehaviour {
 			banana = true;
 			Destroy (coll.gameObject);
 		}
+		else if (coll.gameObject.tag == "slow") {
+			slow = true;
+			timer = 0f;
+		}
 	}
 
 	protected void runnerRun()
@@ -86,7 +102,8 @@ public class Runner : MonoBehaviour {
 				currentSpeed -= accelSpeed * 1.2f;
 			else
 				banana = false;
-		} else {
+		}
+		else {
 			if (currentSpeed < maxSpeed) {
 				currentSpeed += accelSpeed;
 			} else
@@ -116,8 +133,8 @@ public class Runner : MonoBehaviour {
 	private IEnumerator Bumbed_c()
 	{
 		isBumped = true;
-		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-400f, 400f));
-		yield return new WaitForSeconds(1.5f);
+		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(right*-230f, 230f));
+		yield return new WaitForSeconds(1.1f);
 		isBumped = false;
 
 	}

@@ -12,7 +12,7 @@ public class Gashi : MonoBehaviour {
 	void Update () {
 		if(GameObject.FindWithTag("runner").transform.position.x >= this.transform.position.x && under == true)
 		{
-			Vector3 tr = new Vector3 (this.transform.position.x, this.transform.position.y + 0.5f, 0.0f);
+			Vector3 tr = new Vector3 (this.transform.position.x, this.transform.position.y + 0.8f, 0.0f);
 			this.transform.position = tr;
 			under = false;
 		}

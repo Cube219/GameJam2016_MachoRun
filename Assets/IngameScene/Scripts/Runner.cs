@@ -4,10 +4,10 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Runner : MonoBehaviour {
 
-	protected float maxSpeed = 10.0f;
-	protected float currentSpeed = 5.0f;
-	protected float jumpHeight= 450f;
-	protected float dJumpHeight= 450f;
+	protected float maxSpeed = 4.0f;
+	protected float currentSpeed = 3.0f;
+	protected float jumpHeight= 350f;
+	protected float dJumpHeight= 350f;
 	protected bool jumping = false;
 	protected bool dJump = false;
 	protected float accelSpeed= 0.05f;
@@ -25,13 +25,12 @@ public class Runner : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
 	}
 		
 	void FixedUpdate()
 	{
 		if(canRun == true && isBumped == false) {
-				runnerRun();
+			runnerRun();
 
 			if(Input.GetKeyDown(KeyCode.Space)) {
 				if(jumping == false)
@@ -39,13 +38,18 @@ public class Runner : MonoBehaviour {
 				else if(jumping == true && dJump == false)
 					runnerDoubleJump();
 			}
+			
+			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+				right = -1;
+			}
+			if(Input.GetKeyDown(KeyCode.RightArrow)) {
+				right = 1;
+			}
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		Debug.Log(coll.relativeVelocity);
-
 		if(coll.gameObject.tag == "floor") {
 			// 점프들 초기화
 			jumping = false;

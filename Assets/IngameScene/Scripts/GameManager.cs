@@ -18,6 +18,7 @@ public class GameManager : NetworkBehaviour {
 		m = this;
 	}
 
+	
 	void Start () {
 		ReadyGame();
 
@@ -25,7 +26,7 @@ public class GameManager : NetworkBehaviour {
 		MapCreator.m.CreateMap();
 
 		foreach(Runner r in runners) {
-			r.Init();
+		//	r.Init();
 		}
 	}
 
@@ -40,7 +41,9 @@ public class GameManager : NetworkBehaviour {
 
 	private void ReadyGame()
 	{
-		StartCoroutine(Ready_c());
+		//if(isServer) {
+			StartCoroutine(Ready_c());
+		//}
 	}
 	private IEnumerator Ready_c()
 	{

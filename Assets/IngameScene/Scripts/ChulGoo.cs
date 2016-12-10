@@ -10,7 +10,7 @@ public class ChulGoo : NetworkBehaviour {
 	}
 	
 	// Update is called once per frame
-	[Server]
+	/*[ServerCallback]
 	void Update () {
 		if (GameObject.FindWithTag ("runner").transform.position.x >= this.transform.position.x-7) {
 			this.gameObject.GetComponent<Rigidbody2D> ().isKinematic = false;
@@ -23,5 +23,5 @@ public class ChulGoo : NetworkBehaviour {
 			this.GetComponent<Rigidbody2D> ().AddForce (Vector2.up*350);
 			//Destroy (this);
 		}
-	}
+	}*/
 }

@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public class Runner : NetworkBehaviour {
 
 	public TextMesh nameMesh;
+	public Camera c;
 
 	[SyncVar]
 	public string playerName;
@@ -48,15 +49,31 @@ public class Runner : NetworkBehaviour {
 		GameManager.runners.Add(this);
 	}
 
+	void OnDestroy()
+	{
+		GameManager.runners.Remove(this);
+	}
+
 	void Start ()
 	{
 		nameMesh.text = playerName;
 		nameMesh.color = playerColor;
+		//SetCamera();
+	}
+
+	private void SetCamera()
+	{
+		if(isLocalPlayer) {
+			Transform t = this.transform;
+			Vector3 playerPos = new Vector3(t.position.x, 3.2f, -10);
+			Camera.main.GetComponent<Transform>().position = playerPos;
+		}
 	}
 
 	[ClientCallback]
 	void Update()
 	{
+		SetCamera();
 	}
 
 	[SyncVar]

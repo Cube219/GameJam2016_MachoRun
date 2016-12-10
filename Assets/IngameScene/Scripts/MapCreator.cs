@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.Networking;
 
-public class MapCreator : MonoBehaviour {
+public class MapCreator : NetworkBehaviour {
 
 	public static MapCreator m;
 
@@ -22,8 +23,21 @@ public class MapCreator : MonoBehaviour {
 		m = this;
 	}
 
+	public override void OnStartClient()
+	{
+		base.OnStartClient();
+		Debug.Log("CC");
+		ClientScene.RegisterPrefab(tile);
+		ClientScene.RegisterPrefab(Gashi);
+		ClientScene.RegisterPrefab(chulGoo);
+		ClientScene.RegisterPrefab(Banana);
+	}
+
 	public void LoadMapData(string mapName)
 	{
+		if(!NetworkServer.active)
+			return;
+
 		StreamReader sr = new StreamReader("Assets/Resources/Texts/" + mapName + ".macho");
 		int mapHeight = int.Parse(sr.ReadLine());
 		sr.ReadLine();
@@ -51,6 +65,9 @@ public class MapCreator : MonoBehaviour {
 
 	public void CreateMap()
 	{
+		if(!NetworkServer.active)
+			return;
+
 		if(map != null) {
 			Destroy(map);
 			map = null;
@@ -59,6 +76,8 @@ public class MapCreator : MonoBehaviour {
 		map = new GameObject();
 		map.name = "Map";
 		map.transform.position = Vector2.zero;
+		map.AddComponent<NetworkIdentity>();
+		NetworkServer.Spawn(map);
 
 
 		int screenIndex = 0;
@@ -76,24 +95,26 @@ public class MapCreator : MonoBehaviour {
 							case 0: // 타일
 								o = (GameObject)Instantiate(tile);
 								break;
-						case 1: // 바나나
-							o = (GameObject)Instantiate(Banana);
-							break;
-						case 2: // 철구
-							o = (GameObject)Instantiate(chulGoo);
-							break;
-						case 3: // 가시
-							o = (GameObject)Instantiate(Gashi);
-							break;
-						case 5: // 감속
-							o = (GameObject)Instantiate(slow);
-							break;
+							case 1: // 바나나
+								o = (GameObject)Instantiate(Banana);
+								break;
+							case 2: // 철구
+								o = (GameObject)Instantiate(chulGoo);
+								break;
+							case 3: // 가시
+								o = (GameObject)Instantiate(Gashi);
+								break;
+							case 5: // 감속
+							//	o = (GameObject)Instantiate(slow);
+								break;
 						}
 						if(o != null) {
 							o.transform.localScale = new Vector2(2f, 2f);
-
+							
 							o.transform.position = new Vector2(0.8f * j + 0.8f * 16 * screenIndex, 0.8f * i + 0.8f * 9 * row);
 							o.transform.SetParent(map.transform);
+
+							NetworkServer.Spawn(o);
 						}
 					}
 				}

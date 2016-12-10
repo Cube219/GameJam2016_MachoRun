@@ -5,24 +5,34 @@ using UnityEngine.Networking;
 public class Gashi : NetworkBehaviour {
 
 	public BoxCollider2D approachCollider;
-//	public BoxCollider2D killCollider;
+	public GameObject needle;
 
 	[SyncVar]
 	private bool under = true;
 
 	
 	// Update is called once per frame
-	[Server]
+	[ServerCallback]
 	void Update () {
-
-		if(under == true) {
+		if(isServer == true && under == true) {
 			foreach(Runner r in GameManager.runners) {
 				if(approachCollider.IsTouching(r.GetComponent<Collider2D>())) {
-					Vector3 tr = new Vector3(this.transform.position.x, this.transform.position.y + 0.8f, 0.0f);
-					this.transform.position = tr;
+					Vector3 tr = new Vector3(needle.transform.position.x, needle.transform.position.y + 0.8f, 0.0f);
+					needle.transform.position = tr;
 					under = false;
+					RpcShowGashi();
 				}
 			}
+		}
+	}
+
+	[ClientRpc]
+	private void RpcShowGashi()
+	{
+		if(!isServer) {
+			Vector3 tr = new Vector3(needle.transform.position.x, needle.transform.position.y + 0.8f, 0.0f);
+			needle.transform.position = tr;
+			under = false;
 		}
 	}
 }

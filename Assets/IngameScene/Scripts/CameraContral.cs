@@ -14,7 +14,7 @@ public class CameraContral : MonoBehaviour {
 		}
 		if(player != null) {
 			Transform t = player.transform;
-			Vector3 playerPos = new Vector3(t.position.x, 3, -10);
+			Vector3 playerPos = new Vector3(t.position.x, 3.2f, -10);
 			this.GetComponent<Transform>().position = playerPos;
 		}
 	}

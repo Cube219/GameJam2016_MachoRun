@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class Runner : NetworkBehaviour {
 
 	public TextMesh nameMesh;
-	public SpriteRenderer macho;
+	public GameObject macho;
 
 	[SyncVar]
 	public string playerName;
@@ -105,7 +105,7 @@ public class Runner : NetworkBehaviour {
 					else if(jumping == true && dJump == false)
 						runnerDoubleJump();
 				}
-
+				/*
 				if(Input.GetKeyDown(KeyCode.LeftArrow) && jumping == true && currentSpeed < maxSpeed * 1.5f) {
 					//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
 					//right = -1;
@@ -115,7 +115,7 @@ public class Runner : NetworkBehaviour {
 					//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
 					//right = 1;
 					currentSpeed += 2f;
-				}
+				}*/
 			}
 			if(slow == true) {
 				Debug.Log("됩니다");
@@ -131,10 +131,12 @@ public class Runner : NetworkBehaviour {
 			}
 		}
 
-		if(preX - transform.position.x < -0.05f) {
-			macho.flipX = false;
-		} else if(preX - transform.position.x > 0.05f){
-			macho.flipX = true;
+		if(!isBumped) {
+			if(preX - transform.position.x < -0.05f) {
+				macho.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+			} else if(preX - transform.position.x > 0.05f) {
+				macho.transform.localScale = new Vector3(-1.5f, 1.5f, 1);
+			}
 		}
 
 		preX = transform.position.x;

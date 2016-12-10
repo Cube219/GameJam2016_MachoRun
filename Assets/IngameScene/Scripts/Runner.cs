@@ -166,6 +166,8 @@ public class Runner : NetworkBehaviour {
 		} else if (coll.gameObject.tag == "banana") {
 			banana = true;
 			Destroy (coll.gameObject);
+		} else if(coll.gameObject.tag == "endzone") {
+			//GameManager.m.CmdVictory();
 		}
 		else if (coll.gameObject.tag == "fast") {
 			fast = true;

@@ -6,18 +6,23 @@ using DG.Tweening;
 public class ChulGoo : NetworkBehaviour {
 
 	private Rigidbody2D rigid;
+
+	[SyncVar]
 	public bool isDown = false;
 
+	[SyncVar]
 	private Vector2 initPos;
 
 	// Use this for initialization
 	void Start () {
-		initPos = this.GetComponent<Transform>().position;
+		if(isServer) {
+			initPos = this.GetComponent<Transform>().position;
 
-		rigid = this.GetComponent<Rigidbody2D>();
-		rigid.isKinematic = true;
+			rigid = this.GetComponent<Rigidbody2D>();
+			rigid.isKinematic = true;
 
-		StartCoroutine(ChulGoo_Down());
+			StartCoroutine(ChulGoo_Down());
+		}
 	}
 	private IEnumerator ChulGoo_Down()
 	{
@@ -40,14 +45,16 @@ public class ChulGoo : NetworkBehaviour {
 		StartCoroutine(ChulGoo_Down());
 	}
 
-	[Server]
+	[ServerCallback]
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		if(coll.gameObject.tag == "floor") {
-			rigid.velocity = Vector2.zero;
-			rigid.isKinematic = true;
+		if(isServer) {
+			if(coll.gameObject.tag == "floor") {
+				rigid.velocity = Vector2.zero;
+				rigid.isKinematic = true;
 
-			StartCoroutine(Chulgoo_Up());	
+				StartCoroutine(Chulgoo_Up());
+			}
 		}
 	}
 }

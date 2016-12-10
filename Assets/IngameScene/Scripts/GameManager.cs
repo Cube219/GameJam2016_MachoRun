@@ -13,6 +13,8 @@ public class GameManager : NetworkBehaviour {
 	public Image startImg;
 	public Sprite[] countImg;
 
+	private bool isEnd = false;
+
 	
 	void Awake()
 	{
@@ -31,15 +33,6 @@ public class GameManager : NetworkBehaviour {
 		}
 	}
 
-	[ServerCallback]
-	void Update()
-	{
-	}
-
-	public void Init()
-	{
-	}
-
 	private void ReadyGame()
 	{
 		//if(isServer) {
@@ -49,27 +42,13 @@ public class GameManager : NetworkBehaviour {
 	private IEnumerator Ready_c()
 	{
 		startImg.gameObject.SetActive(true);
-		//countImg[0].GetComponent<CanvasGroup>().DOFade(0.2f, 0);
 		startImg.sprite = countImg[0];
-		//countImg[0].GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), 1);
-		//countImg[0].GetComponent<CanvasGroup>().DOFade(1, 1);
 		yield return new WaitForSeconds(1.0f);
-
-		//countImg[1].GetComponent<CanvasGroup>().DOFade(0.2f, 0);
 		startImg.sprite = countImg[1];
-		//countImg[1].GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), 1);
-		//countImg[1].GetComponent<CanvasGroup>().DOFade(1, 1);
 		yield return new WaitForSeconds(1.0f);
-
-		//countImg[2].GetComponent<CanvasGroup>().DOFade(0.2f, 0);
 		startImg.sprite = countImg[2];
-		//countImg[2].GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), 1);
-		//countImg[2].GetComponent<CanvasGroup>().DOFade(1, 1);
 		yield return new WaitForSeconds(1.0f);
-
 		startImg.sprite = countImg[3];
-		//countImg[2].GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), 1);
-		//countImg[2].GetComponent<CanvasGroup>().DOFade(1, 1);
 		yield return new WaitForSeconds(0.5f);
 		startImg.gameObject.SetActive(false);
 
@@ -81,6 +60,32 @@ public class GameManager : NetworkBehaviour {
 		foreach(Runner r in runners) {
 			r.canRun = true;
 		}
+	}
+
+	[Server]
+	public void Victory(Runner r)
+	{
+		if(isEnd == false) {
+			isEnd = true;
+			foreach(Runner run in runners) {
+				run.canRun = false;
+				run.isBumped = true;
+			}
+			RpcVictory(r.playerName, r.playerColor);
+
+			StartCoroutine(Victory_c());
+		}
+	}
+	private IEnumerator Victory_c()
+	{
+		yield return new WaitForSeconds(4f);
+		Prototype.NetworkLobby.LobbyManager.s_Singleton.ServerReturnToLobby();
+	}
+	
+	[ClientRpc]
+	public void RpcVictory(string playerName, Color playerColor)
+	{
+		Debug.Log(playerName + "Win!!");
 	}
 
 }

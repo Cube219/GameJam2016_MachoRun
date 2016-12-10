@@ -28,11 +28,11 @@ public class MapCreator:NetworkBehaviour {
 	public override void OnStartClient()
 	{
 		base.OnStartClient();
-		Debug.Log("CC");
 		ClientScene.RegisterPrefab(tile);
 		ClientScene.RegisterPrefab(Gashi);
 		ClientScene.RegisterPrefab(chulGoo);
 		ClientScene.RegisterPrefab(Banana);
+		ClientScene.RegisterPrefab(endZone);
 	}
 
 	public void LoadMapData(string mapName)

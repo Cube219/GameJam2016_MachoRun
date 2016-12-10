@@ -22,17 +22,17 @@ Platform assembly: C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Mana
 Loading C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Managed\DOTween46.dll into Unity Child Domain
 Platform assembly: C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Managed\DOTween50.dll (this message is harmless)
 Loading C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Managed\DOTween50.dll into Unity Child Domain
-- Completed reload, in  0.084 seconds
+- Completed reload, in  0.086 seconds
 Platform assembly: C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Lim HJ\Desktop\GameJam2016\MachoRun\Client_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.798419 ms
+UnloadTime: 0.949332 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 14ec -> priority: 1 
-  Thread -> id: 1254 -> priority: 1 
+  Thread -> id: 2794 -> priority: 1 
+  Thread -> id: 2790 -> priority: 1 
 DontDestroyOnLoad only work for root GameObjects or components on root GameObjects.
  
 (Filename:  Line: 386)
@@ -42,159 +42,19 @@ DontDestroyOnLoad only work for root GameObjects or components on root GameObjec
 (Filename:  Line: 386)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.012047 ms
+UnloadTime: 2.008492 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 1031.
-Total: 1.156344 ms (FindLiveObjects: 0.072691 ms CreateObjectMapping: 0.035160 ms MarkObjects: 0.992394 ms  DeleteObjects: 0.054913 ms)
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 2884.
+Total: 3.161676 ms (FindLiveObjects: 0.312493 ms CreateObjectMapping: 0.137086 ms MarkObjects: 2.491652 ms  DeleteObjects: 0.219259 ms)
 
-OnObjSpawn netId: 1 has invalid asset Id
+Player2Win!!
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-OnObjSpawn netId: 2 has invalid asset Id
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-OnObjSpawn netId: 6 has invalid asset Id
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-CC
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-[Server] function 'System.Void ChulGoo::OnCollisionEnter2D(UnityEngine.Collision2D)' called on client
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:7777}
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.580740 ms
+UnloadTime: 2.044837 ms
 
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1113.
-Total: 0.808295 ms (FindLiveObjects: 0.031999 ms CreateObjectMapping: 0.025283 ms MarkObjects: 0.712690 ms  DeleteObjects: 0.037925 ms)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1000.
+Total: 1.242863 ms (FindLiveObjects: 0.090469 ms CreateObjectMapping: 0.036345 ms MarkObjects: 1.072591 ms  DeleteObjects: 0.043061 ms)
 
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:53907}

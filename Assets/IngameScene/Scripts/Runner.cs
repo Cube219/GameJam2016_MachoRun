@@ -29,8 +29,6 @@ public class Runner : NetworkBehaviour {
 	protected float accelSpeed= 0.05f;
 	[SyncVar]
 	protected int upgrade = 0;
-	[SyncVar]
-	protected int right = 1;
 
 	[SyncVar]
 	public bool canRun = false;
@@ -42,7 +40,10 @@ public class Runner : NetworkBehaviour {
 	public bool slow = false;
 	[SyncVar]
 	public bool fast = false;
+	[SyncVar]
+	public int right = 1;
 
+	public BoxCollider2D approachCollider;
 
 	void Awake()
 	{
@@ -82,13 +83,17 @@ public class Runner : NetworkBehaviour {
 	[ClientCallback]
 	void FixedUpdate()
 	{
+		if (fast == true) {
+			currentSpeed += 10f;
+			fast = false;
+		}
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			right = 1;
-			this.transform.localScale = new Vector2 (-2, 2);
+			this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
+			right = -1;
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) {
+			this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
 			right = 1;
-			this.transform.localScale = new Vector2 (2, 2);
 		}
 		if(canRun == true && isBumped == false) {
 			runnerRun();
@@ -100,19 +105,29 @@ public class Runner : NetworkBehaviour {
 					runnerDoubleJump();
 			}
 			
-			if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-				right = -1;
+			if(Input.GetKeyDown(KeyCode.LeftArrow) && jumping == true && currentSpeed< maxSpeed*1.5f) {
+				//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
+				//right = -1;
+				currentSpeed += 2f;
 			}
-			if(Input.GetKeyDown(KeyCode.RightArrow)) {
-				right = 1;
+			if(Input.GetKeyDown(KeyCode.RightArrow)&& jumping == true&& currentSpeed< maxSpeed*1.5f) {
+				//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
+				//right = 1;
+				currentSpeed += 2f;
 			}
 		}
 		if (slow == true) {
+			Debug.Log("됩니다");
 			timer += Time.deltaTime;
-			if (timer <= 3f)
+			if (timer <= 3f) {
 				maxSpeed = 2f;
+				Debug.Log("타이머도");
+			}
 			else
 				slow = false;
+		}
+		if (approachCollider.IsTouching (this.GetComponent<Collider2D> ())) {
+			slow = true;
 		}
 	}
 
@@ -129,9 +144,9 @@ public class Runner : NetworkBehaviour {
 			banana = true;
 			Destroy (coll.gameObject);
 		}
-		else if (coll.gameObject.tag == "slow") {
-			slow = true;
-			timer = 0f;
+		else if (coll.gameObject.tag == "fast") {
+			fast = true;
+			Destroy (coll.gameObject);
 		}
 	}
 

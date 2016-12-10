@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CameraContral : MonoBehaviour {
 	public GameObject player;
+	/*
 	// Use this for initialization
 	void Start()
 	{
@@ -36,5 +37,5 @@ public class CameraContral : MonoBehaviour {
 			this.GetComponent<Transform>().position = playerPos;
 		}
 
-	}
+	}*/
 }

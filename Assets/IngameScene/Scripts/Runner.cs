@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Runner : NetworkBehaviour {
@@ -46,6 +47,7 @@ public class Runner : NetworkBehaviour {
 	public BoxCollider2D approachCollider;
 
 	private float preX = 0;
+	private int currentFloor = 1;
 
 	void Awake()
 	{
@@ -61,15 +63,25 @@ public class Runner : NetworkBehaviour {
 	{
 		nameMesh.text = playerName;
 		nameMesh.color = playerColor;
-		//SetCamera();
 	}
 
 	private void SetCamera()
 	{
 		if(isLocalPlayer) {
 			Transform t = this.transform;
-			Vector3 playerPos = new Vector3(t.position.x, 3.2f, -10);
-			Camera.main.GetComponent<Transform>().position = playerPos;
+
+			currentFloor = (int)((t.position.y - 0.9f) / 7.2f) + 1;
+
+			Vector3 playerPos;
+			if((t.position.y - 0.9f) / 7.2f - (float)(currentFloor - 1) >= 0.4f)
+				playerPos = new Vector3(t.position.x, t.position.y, -10);
+			else
+				playerPos = new Vector3(t.position.x, 3.2f + (currentFloor-1)*7.2f, -10);
+
+			Vector2 cameraPos = Camera.main.GetComponent<Transform>().position;
+
+			Camera.main.GetComponent<Transform>().position = new Vector3(playerPos.x, cameraPos.y, -10);
+			Camera.main.GetComponent<Transform>().DOMoveY(playerPos.y, 0.5f);
 		}
 	}
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.Networking;
 
-public class MapCreator : NetworkBehaviour {
+public class MapCreator:NetworkBehaviour {
 
 	public static MapCreator m;
 
@@ -82,13 +82,13 @@ public class MapCreator : NetworkBehaviour {
 
 		int screenIndex = 0;
 		int rowNum = maps.Count;
-		for(int row=0; row<rowNum; row++) {
+		for(int row = 0; row < rowNum; row++) {
 			int screenNum = maps[row].Count;
-			for(int scr=0; scr<screenNum; scr++) {
-				
-				for(int i=0; i<9; i++) {
-					for(int j=0; j<16; j++) {
-						int t = maps[row][scr][8-i, j];
+			for(int scr = 0; scr < screenNum; scr++) {
+
+				for(int i = 0; i < 9; i++) {
+					for(int j = 0; j < 16; j++) {
+						int t = maps[row][scr][8 - i, j];
 
 						GameObject o = null;
 						switch(t) {
@@ -105,12 +105,12 @@ public class MapCreator : NetworkBehaviour {
 								o = (GameObject)Instantiate(Gashi);
 								break;
 							case 5: // 감속
-							//	o = (GameObject)Instantiate(slow);
+									//	o = (GameObject)Instantiate(slow);
 								break;
 						}
 						if(o != null) {
 							o.transform.localScale = new Vector2(2f, 2f);
-							
+
 							o.transform.position = new Vector2(0.8f * j + 0.8f * 16 * screenIndex, 0.8f * i + 0.8f * 9 * row);
 							o.transform.SetParent(map.transform);
 

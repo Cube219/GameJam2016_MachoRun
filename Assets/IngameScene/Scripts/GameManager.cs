@@ -5,11 +5,20 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager m;
+
 	public Image[] countImg;
 
-	// Use this for initialization
+	
+	void Awake()
+	{
+		m = this;
+	}
+
 	void Start () {
 		ReadyGame();
+		MapCreator.m.LoadMapData("test1");
+		MapCreator.m.CreateMap();
 	}
 
 	private void Init()

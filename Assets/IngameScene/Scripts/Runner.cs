@@ -83,51 +83,52 @@ public class Runner : NetworkBehaviour {
 	[ClientCallback]
 	void FixedUpdate()
 	{
-		if (fast == true) {
-			currentSpeed += 10f;
-			fast = false;
-		}
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
-			right = -1;
-		}
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
-			right = 1;
-		}
-		if(canRun == true && isBumped == false) {
-			runnerRun();
+		if(isLocalPlayer) {
+			if(fast == true) {
+				currentSpeed += 10f;
+				fast = false;
+			}
+			if(Input.GetKey(KeyCode.LeftArrow)) {
+				this.transform.FindChild("GameObject").transform.localScale = new Vector2(-2, 2);
+				right = -1;
+			}
+			if(Input.GetKey(KeyCode.RightArrow)) {
+				this.transform.FindChild("GameObject").transform.localScale = new Vector2(2, 2);
+				right = 1;
+			}
+			if(canRun == true && isBumped == false) {
+				runnerRun();
 
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				if(jumping == false)
-					runnerJump();
-				else if(jumping == true && dJump == false)
-					runnerDoubleJump();
+				if(Input.GetKeyDown(KeyCode.Space)) {
+					if(jumping == false)
+						runnerJump();
+					else if(jumping == true && dJump == false)
+						runnerDoubleJump();
+				}
+
+				if(Input.GetKeyDown(KeyCode.LeftArrow) && jumping == true && currentSpeed < maxSpeed * 1.5f) {
+					//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
+					//right = -1;
+					currentSpeed += 2f;
+				}
+				if(Input.GetKeyDown(KeyCode.RightArrow) && jumping == true && currentSpeed < maxSpeed * 1.5f) {
+					//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
+					//right = 1;
+					currentSpeed += 2f;
+				}
 			}
-			
-			if(Input.GetKeyDown(KeyCode.LeftArrow) && jumping == true && currentSpeed< maxSpeed*1.5f) {
-				//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (-2, 2);
-				//right = -1;
-				currentSpeed += 2f;
+			if(slow == true) {
+				Debug.Log("됩니다");
+				timer += Time.deltaTime;
+				if(timer <= 3f) {
+					maxSpeed = 2f;
+					Debug.Log("타이머도");
+				} else
+					slow = false;
 			}
-			if(Input.GetKeyDown(KeyCode.RightArrow)&& jumping == true&& currentSpeed< maxSpeed*1.5f) {
-				//this.transform.FindChild("GameObject").transform.localScale = new Vector2 (2, 2);
-				//right = 1;
-				currentSpeed += 2f;
+			if(approachCollider.IsTouching(this.GetComponent<Collider2D>())) {
+				slow = true;
 			}
-		}
-		if (slow == true) {
-			Debug.Log("됩니다");
-			timer += Time.deltaTime;
-			if (timer <= 3f) {
-				maxSpeed = 2f;
-				Debug.Log("타이머도");
-			}
-			else
-				slow = false;
-		}
-		if (approachCollider.IsTouching (this.GetComponent<Collider2D> ())) {
-			slow = true;
 		}
 	}
 

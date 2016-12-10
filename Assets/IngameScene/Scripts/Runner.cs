@@ -212,11 +212,13 @@ public class Runner : NetworkBehaviour {
 
 	protected void runnderBumped()
 	{
-		StartCoroutine(Bumbed_c());
+		if(isBumped == false)
+			StartCoroutine(Bumbed_c());
 	}
 	private IEnumerator Bumbed_c()
 	{
 		isBumped = true;
+		this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		this.GetComponent<Rigidbody2D>().AddForce(new Vector2(right*-230f, 230f));
 		yield return new WaitForSeconds(1.1f);
 		isBumped = false;

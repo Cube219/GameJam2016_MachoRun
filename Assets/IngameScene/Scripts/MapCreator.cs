@@ -15,6 +15,8 @@ public class MapCreator:NetworkBehaviour {
 
 	public GameObject slow;
 
+	public GameObject endZone;
+
 	private List<List<int[,]>> maps = new List<List<int[,]>>();
 	private GameObject map;
 
@@ -107,6 +109,10 @@ public class MapCreator:NetworkBehaviour {
 							case 5: // 감속
 									//	o = (GameObject)Instantiate(slow);
 								break;
+							case 7: // 엔드존
+								o = (GameObject)Instantiate(endZone);
+								break;
+
 						}
 						if(o != null) {
 							o.transform.localScale = new Vector2(2f, 2f);

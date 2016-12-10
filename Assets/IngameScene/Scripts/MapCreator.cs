@@ -17,6 +17,10 @@ public class MapCreator:NetworkBehaviour {
 
 	public GameObject endZone;
 
+	public GameObject bg1;
+	public GameObject bg2;
+	public GameObject bg3;
+
 	private List<List<int[,]>> maps = new List<List<int[,]>>();
 	private GameObject map;
 
@@ -123,6 +127,8 @@ public class MapCreator:NetworkBehaviour {
 							NetworkServer.Spawn(o);
 						}
 					}
+					// 배경 생성
+			//		int se
 				}
 				if(row % 2 == 0)
 					screenIndex++;

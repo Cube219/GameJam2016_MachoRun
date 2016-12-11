@@ -108,14 +108,15 @@ public class Runner : NetworkBehaviour {
 			if(Input.GetKey(KeyCode.RightArrow)) {
 				right = 1;
 			}
+		
 			if(canRun == true && isBumped == false) {
 				runnerRun();
 
-				if(Input.GetKeyDown(KeyCode.Space)) {
-					if(jumping == false)
-						runnerJump();
-					else if(jumping == true && dJump == false)
-						runnerDoubleJump();
+				if(Input.GetKeyDown(KeyCode.Z)) {
+					if (jumping == false)
+						runnerJump ();
+					else if (jumping == true && dJump == false)
+						runnerDoubleJump ();
 				}
 				/*
 				if(Input.GetKeyDown(KeyCode.LeftArrow) && jumping == true && currentSpeed < maxSpeed * 1.5f) {
@@ -162,7 +163,7 @@ public class Runner : NetworkBehaviour {
 			jumping = false;
 			dJump = false;
 		} else if (coll.gameObject.tag == "obstacle") {
-			runnderBumped ();
+			runnerBumped ();
 		} else if (coll.gameObject.tag == "banana") {
 			banana = true;
 			Destroy (coll.gameObject);
@@ -202,6 +203,7 @@ public class Runner : NetworkBehaviour {
 		this.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * jumpHeight);
 		jumping = true;
 		currentSpeed -= 1.0f;
+		Debug.Log ("일단 점프");
 	}
 
 	protected void runnerDoubleJump()
@@ -210,9 +212,10 @@ public class Runner : NetworkBehaviour {
 		this.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 		this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 0));
 		this.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * dJumpHeight);
+		Debug.Log ("이단 점프");
 	}
 
-	protected void runnderBumped()
+	protected void runnerBumped()
 	{
 		if(isBumped == false)
 			StartCoroutine(Bumbed_c());

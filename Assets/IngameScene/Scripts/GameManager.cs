@@ -9,6 +9,7 @@ public class GameManager : NetworkBehaviour {
 
 	public static List<Runner> runners = new List<Runner>();
 	public static GameManager m;
+	public static SoundPlayer soundPlayer = new SoundPlayer();
 
 	public Image startImg;
 	public Sprite[] countImg;
